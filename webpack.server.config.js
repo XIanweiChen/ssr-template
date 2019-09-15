@@ -3,12 +3,11 @@ const path = require('path');
 
 module.exports = {
     mode: 'development',
-    target:'node',
-    entry:path.join(__dirname,'src/App.js'),
+    target:'node',  //用于node环境
     entry:path.join(__dirname,'src/serverApp.js'),
     output:{
-        libraryTarget:'commonjs2',
-        filename:'serverApp.js',
+        libraryTarget:'commonjs2', //!!!!!!!千万不能少
+        filename:'serverApp.js',   
         publicPath:'/static/'
     },
     

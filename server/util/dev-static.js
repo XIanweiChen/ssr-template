@@ -19,7 +19,6 @@ const getTemplate = () => {   //获取html模版
 }
 
 let serverBoundle = null
-const Module = module.constructor //获取module的构造函数
 const mfs = new MemoryFs     //读取内存中的模块,api和fs相同
 const serverCompiler = webpack(serverConfig)   //创建一个webpack,webpack不仅能在cli中用,还能在代码中用
 serverCompiler.outputFileSystem = mfs  //把bundle写在内存中
@@ -32,15 +31,8 @@ serverCompiler.watch({}, (err, stats) => { //{}表示不加配置,stats是类似
         serverConfig.output.path,
         serverConfig.output.filename
     )
-
-    const bundle = mfs.readFileSync(bundlePath,'utf-8') //!!!! utf-8
-    const m = new Module()
     
-    //为什么要进行一下这一步?
-    //bundle是string的代码,不能通过ReactDomServer.renderToString
-    //所以要先通过module编译导出才能变成Symbol(react.element)
-    m._compile(bundle,'serverApp.js') //!!!!一定要加serverApp.js  把bundle重新编译成一个模块导出
-    serverBoundle = m.exports.default
+    serverBoundle = require(bundlePath).default  //!!!!!!!!!!!!!!!!!!直接require不就行了   教程有问题
 })
 
 module.exports = function (app) {

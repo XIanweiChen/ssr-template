@@ -5,7 +5,7 @@ const common = require('./webpack.common.config')
 config = merge.smart(common, {
   mode: 'development',
   target: 'node',  //用于node环境
-  entry: path.join(__dirname, 'src/serverApp.js'),
+  entry: path.join(__dirname, 'client/serverApp.js'),
   output: {
     libraryTarget: 'commonjs2', //!!!!!!!千万不能少
     path: path.join(__dirname, './dist'),

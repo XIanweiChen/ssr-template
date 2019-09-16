@@ -12,6 +12,7 @@ const htmlPlugin = new HtmlWebpackPlugin({
 const isDev = process.env.NODE_ENV === "development";
 
 config = {
+  entry: path.join(__dirname, './client/index.js'),
   plugins: [htmlPlugin, new CleanWebpackPlugin()],
 };
 if (isDev) {

@@ -1,4 +1,6 @@
 const path = require("path");
+const merge = require('webpack-merge')
+const common = require('./webpack.common.config')
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
@@ -11,49 +13,6 @@ const isDev = process.env.NODE_ENV === "development";
 
 config = {
   plugins: [htmlPlugin, new CleanWebpackPlugin()],
-  output: {
-    publicPath: "/static/"
-  },
-  module: {
-    rules: [
-      {
-        enforce: "pre",
-        test: /\.js$/,
-        exclude: /(node_modules|bower_components)/,
-        loader: "eslint-loader"
-      },
-      {
-        test: /\.js$/,
-        exclude: /(node_modules|bower_components)/,
-        use: {
-          loader: "babel-loader",
-          options: {
-            presets: ["@babel/preset-env", "@babel/preset-react"],
-            plugins: [
-              "@babel/plugin-proposal-object-rest-spread",
-              "@babel/plugin-transform-runtime",
-              "@babel/plugin-proposal-class-properties",
-              "react-hot-loader/babel"
-            ]
-          }
-        }
-      },
-      {
-        test: /\.css$/,
-        use: ["style-loader", "css-loader"]
-      },
-      {
-        test: /\.(png|svg|jpg|gif)$/,
-        use: ["file-loader"]
-      }
-    ]
-  },
-  resolve: {
-    extensions: [".js", "jsx"],
-    alias: {
-      "@": path.join(__dirname, "./src")
-    }
-  }
 };
 if (isDev) {
   config.devServer = {
@@ -74,4 +33,4 @@ if (isDev) {
   };
 }
 
-module.exports = config;
+module.exports = merge(common, config)

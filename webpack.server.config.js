@@ -1,7 +1,8 @@
 const path = require('path');
+const merge = require('webpack-merge')
+const common = require('./webpack.common.config')
 
-
-module.exports = {
+config = merge.smart(common, {
   mode: 'development',
   target: 'node',  //用于node环境
   entry: path.join(__dirname, 'src/serverApp.js'),
@@ -34,8 +35,7 @@ module.exports = {
       {
         test: /\.css$/,
         use: [
-          'isomorphic-style-loader',
-          'css-loader',
+          'isomorphic-style-loader', 'css-loader',
         ]
       },
       {
@@ -49,3 +49,7 @@ module.exports = {
 
 
 }
+)
+
+// console.log(config.module.rules[2])
+module.exports = config

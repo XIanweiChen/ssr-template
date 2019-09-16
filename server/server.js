@@ -6,7 +6,7 @@ const ReactDOMServer = require('react-dom/server');
 const app = express()
 
 const isDev = process.env.NODE_ENV === 'development'
-
+console.log(isDev)
 if (!isDev) {
     const content = require('../dist/serverApp.js').default  //引用组件内容
     const template = ReactDOMServer.renderToNodeStream(content)  //react内置函数奖组件转成字符串

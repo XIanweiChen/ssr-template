@@ -10,7 +10,6 @@ const htmlPlugin = new HtmlWebpackPlugin({
 const isDev =  process.env.NODE_ENV === 'development'
 
 config = {
-    mode: 'development',
     plugins: [htmlPlugin,new CleanWebpackPlugin()],
     output:{
         publicPath:'/static/'

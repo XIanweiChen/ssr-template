@@ -12,7 +12,6 @@ class App extends React.Component {
   }
   async componentDidMount(){
     const res = await axios.get('http://jsonplaceholder.typicode.com/comments')
-    console.log(res.data)
     this.setState({
       data:res.data
     })
@@ -23,7 +22,7 @@ class App extends React.Component {
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <p>
-            Edit <code>src/App.js</code> and save to reload1121!!.
+            Edit <code>src/App.js</code> and save to reload111!!.
           </p>
           <a
             className="App-link"
@@ -34,7 +33,7 @@ class App extends React.Component {
             Learn React
           </a>
           {this.state.data.length>0&&this.state.data.map(item=>{
-            return  <p>{item.name}</p>
+            return  <p key={item.name}>{item.name}</p>
           })}
         </header>
       </div>

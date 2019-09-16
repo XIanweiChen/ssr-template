@@ -5,4 +5,4 @@ import Router from './router';
 
 // const renderMethod = module.hot ? ReactDom.render : ReactDOM.hydrate;
 // console.log(renderMethod.name)
-ReactDom.hydrate(<Router />,document.getElementById('root'))
+ReactDom.hydrate(<Router />, document.getElementById('root'))

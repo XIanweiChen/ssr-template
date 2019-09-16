@@ -7,6 +7,7 @@ module.exports = {
     entry:path.join(__dirname,'src/serverApp.js'),
     output:{
         libraryTarget:'commonjs2', //!!!!!!!千万不能少
+        path:path.join(__dirname,'./path'),
         filename:'serverApp.js',   
         publicPath:'/static/'
     },

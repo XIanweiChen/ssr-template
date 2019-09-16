@@ -19,9 +19,12 @@ if (!isDev) {
         res.send(newHtml)//返回结果
     })
 }else{
-    // const devStatic = require('')
+    const devStatic = require('./util/dev-static')
+    devStatic(app)
 }
 
 
 
-app.listen(5000)
+app.listen(5000,()=>{
+    console.log('server listen on 5000')
+})

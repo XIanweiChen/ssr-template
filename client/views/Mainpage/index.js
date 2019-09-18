@@ -31,7 +31,7 @@ class App extends React.Component {
             {' '}
             <code>src/App.js</code>
             {' '}
-            and save to reload.
+            and save to reload211212.
           </p>
           <a
             className="App-link"

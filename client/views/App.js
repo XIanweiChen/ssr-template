@@ -1,24 +1,28 @@
-import { BrowserRouter as Router, Link } from 'react-router-dom'
 import React from 'react';
+import { BrowserRouter as Router, Link } from 'react-router-dom'
 import { hot } from 'react-hot-loader/root';
+import { Provider } from 'mobx-react'
+import appState from '../store/app-state';
 import Routes from '../router/router'
 
 
 function App() {
   return (
-    <Router>
-      <nav>
-        <ul>
-          <li>
-            <Link to="/">Main</Link>
-          </li>
-          <li>
-            <Link to="/about/">About</Link>
-          </li>
-        </ul>
-      </nav>
-      <Routes />
-    </Router>
+    <Provider appState={appState}>
+      <Router>
+        <nav>
+          <ul>
+            <li>
+              <Link to="/">Main</Link>
+            </li>
+            <li>
+              <Link to="/about/">About</Link>
+            </li>
+          </ul>
+        </nav>
+        <Routes />
+      </Router>
+    </Provider>
   )
 }
 const isDev = process.env.NODE_ENV === 'development'

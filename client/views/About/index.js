@@ -1,5 +1,18 @@
 import React from 'react'
+import PropTypes from 'prop-types'
+import { observer, inject } from 'mobx-react'
+import { Appstate } from '../../store/app-state'
 
-export default function About() {
-  return <h2>About</h2>;
+@inject('appState') @observer
+class About extends React.Component {
+  render() {
+    return <h2>{this.props.appState.msg}</h2>
+  }
 }
+
+
+About.propTypes = {
+  appState: PropTypes.instanceOf(Appstate),
+}
+
+export default About

@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { observer, inject } from 'mobx-react'
-import { Appstate } from '../../store/app-state'
+import Appstate from '../../store/app-state'
 
 @inject('appState') @observer
 class About extends React.Component {

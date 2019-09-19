@@ -3,7 +3,7 @@ import {
 } from 'mobx'
 
 
-export class Appstate {
+export default class Appstate {
   @observable count = 0
 
   @observable name = 'cxw'
@@ -17,7 +17,7 @@ export class Appstate {
   }
 }
 
-const appState = new Appstate()
+// const appState = new Appstate()
 
 autorun(() => {
   // console.log(appState.msg)
@@ -29,4 +29,4 @@ autorun(() => {
 // }, 1000)
 
 
-export default appState
+// export default appState

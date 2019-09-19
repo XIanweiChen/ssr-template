@@ -18,7 +18,7 @@ const getTemplate = () => {   //获取html模版
   })
 }
 
-let serverBoundle = null
+let serverBoundle = null, createStateMap = null
 const Module = module.constructor //获取module的构造函数
 const mfs = new MemoryFs     //读取内存中的模块,api和fs相同
 const serverCompiler = webpack(serverConfig)   //创建一个webpack,webpack不仅能在cli中用,还能在代码中用
@@ -45,6 +45,7 @@ serverCompiler.watch({}, (err, stats) => { //{}表示不加配置,stats是类似
   //所以要先通过module编译导出才能变成Symbol(react.element)
   m._compile(bundle, 'serverApp.js') //!!!!一定要加serverApp.js  把bundle重新编译成一个模块导出
   serverBoundle = m.exports.default
+  createStateMap = m.exports.createStateMap
 })
 
 module.exports = function (app) {
@@ -55,7 +56,9 @@ module.exports = function (app) {
 
   app.use(function (req, res) {
     getTemplate().then(template => {
-      const content = ReactDomServer.renderToString(serverBoundle)
+      const routerContext = {}
+      const app = serverBoundle(routerContext, req.url)
+      const content = ReactDomServer.renderToString(app)
       const newHtml = template.replace('<!-- app -->', content)   //替换内容
       res.send(newHtml)
     })

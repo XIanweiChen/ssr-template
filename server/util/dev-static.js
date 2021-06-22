@@ -58,6 +58,9 @@ module.exports = function (app) {
     getTemplate().then(template => {
       const routerContext = {}
       const app = serverBoundle(routerContext, req.url)
+      app.type = function () { }
+      console.log(app.type, typeof (app.type))
+      // console.log(JSON.stringify(app.type))
       const content = ReactDomServer.renderToString(app)
       const newHtml = template.replace('<!-- app -->', content)   //替换内容
       res.send(newHtml)
